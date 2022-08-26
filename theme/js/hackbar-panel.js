@@ -1,6 +1,3 @@
-const license_server = "https://hackbar.herokuapp.com/ping";
-let license_ok = true;
-
 let urlField = $('#url_field');
 let postDataField = $('#post_data_field');
 let refererField = $('#referer_field');
@@ -17,24 +14,6 @@ let enableUserAgentBtn = $('#enable_user_agent_btn');
 let enableCookieBtn = $('#enable_cookie_btn');
 let clearAllBtn = $('#clear_all');
 let addSlash = $('#add-slash');
-
-function disable_hackbar(message=null) {
-    $('#alert-license').removeClass('hidden');
-    if(message){
-        $('#alert-license span').text(message);
-    }
-    license_ok = false;
-}
-
-chrome.storage.local.get(['license'], function (result) {
-    const license = result.license;
-    });
-
-$('#licence-save').bind('click', () => {
-    const license = $('#licence-input').val();
-    chrome.storage.local.set({license: license});
-    $('#alert-license').addClass('hidden');
-});
 
 const menu_btn_array = ['md5', 'sha1', 'sha256', 'rot13',
 'base64_encode', 'base64_decode', 'url_encode', 'url_decode', 'hex_encode', 'hex_decode',
@@ -224,13 +203,7 @@ function setSelectedText(str) {
     currentFocusField.val(pre + str + post);
     currentFocusField[0].setSelectionRange(selectionStart, selectionEnd + str.length);
 }
- // listenener function
- function check_license(){
-    return;
-    if(!license_ok){
-        throw new Error('Please input valid license!');
-    }
-}
+
 function onclickMenu(action, val) {
     switch (action) {
         case 'md5':
@@ -428,15 +401,12 @@ cookieField.bind('click', onFocusListener, false);
 
 //Events
 loadUrlBtn.bind('click', function(){
-    check_license();
     loadUrl();
 });
 splitUrlBtn.bind('click', function(){
-    check_license();
     splitUrl();
 });
 executeBtn.bind('click', function(){
-    check_license();
     execute();
 });
 clearAllBtn.bind('click', function () {
@@ -446,34 +416,32 @@ clearAllBtn.bind('click', function () {
 });
 
 enablePostBtn.click(function () {
-    toggleElement($(this), postDataField.closest('.block'))
+    toggleElement($(this), postDataField.closest('.block'));
 });
 enableRefererBtn.click(function () {
-    toggleElement($(this), refererField.closest('.block'))
+    toggleElement($(this), refererField.closest('.block'));
 });
 enableUserAgentBtn.click(function () {
-    toggleElement($(this), userAgentField.closest('.block'))
+    toggleElement($(this), userAgentField.closest('.block'));
 });
 enableCookieBtn.click(function () {
-    toggleElement($(this), cookieField.closest('.block'))
+    toggleElement($(this), cookieField.closest('.block'));
 });
 
 addSlash.click(function () {
     let currentValue = currentFocusField.val();
-    currentValue+="/"
+    currentValue+="/";
     currentFocusField.val(currentValue);
 });
 
 //Add event listener
 menu_btn_array.forEach(function (elementID) {
     $('#' + elementID).bind('click', function(){
-        check_license();
         onclickMenu(elementID);
     });
 });
 
 $('#lfi .lfi_data').bind('click', function(e){
-    check_license();
     onclickMenu('LFI', this.text);
 });
 

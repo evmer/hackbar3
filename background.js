@@ -12,7 +12,7 @@ chrome.webRequest.onBeforeRequest.addListener(
     setCurrentPostData,
     { urls: ['<all_urls>'], types: ['main_frame'] }, 
     ['requestBody']
-    );
+);
 
 
 // add/modify headers before sending request
@@ -20,7 +20,7 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
     rewriteHeaders,
     { urls: ["<all_urls>"], types: ["main_frame"] },
     ["blocking", "requestHeaders"]
-    );
+);
 
 
 // get referer for each page loaded
@@ -28,7 +28,7 @@ chrome.webRequest.onSendHeaders.addListener(
     getCurrentHeaders,
     { urls: ["<all_urls>"], types: ["main_frame"] },
     ["requestHeaders"]
-    );
+);
 
 function setCurrentPostData(e) {
     if (e.method === "POST" && e.requestBody) {
@@ -58,14 +58,14 @@ function rewriteHeaders(e) {
         let h = e.requestHeaders[i];
         switch (h.name.toLowerCase()) {
             case 'referer':
-            index_referer = i;
-            break;
+                index_referer = i;
+                break;
             case 'user-agent':
-            index_user_agent = i;
-            break;
+                index_user_agent = i;
+                break;
             case 'cookie':
-            index_cookie = i;
-            break;
+                index_cookie = i;
+                break;
         }
     }
     //add referer
