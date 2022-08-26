@@ -1,0 +1,17 @@
+{
+	"description": "A HackBar for google chrome/firefox browser. Small tool for pentesting websercurity.",
+	"manifest_version": 2,
+	"name": "HackBar (cracked & fixed)",
+	"version": "3",
+	"author": "evmer",
+	"homepage_url": "https://github.com/evmer/hackbar",
+	"icons": {
+		"48": "icons/icon.png"
+	},
+	"permissions": ["tabs", "activeTab", "webRequest", "webRequestBlocking", "<all_urls>", "storage"],
+	"devtools_page": "theme/hackbar.html",
+	"background": {
+		"scripts": ["background.js"]
+	}
+}
+
