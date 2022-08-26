@@ -1,6 +1,8 @@
 # hackbar3
 A HackBar for google chrome/firefox browser. Small tool for pentesting websercurity.
 
+https://addons.mozilla.org/it/firefox/addon/hackbar-3/
+
 ## How to use
 Press F12 to open hackbar.
 
