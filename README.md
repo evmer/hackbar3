@@ -1,4 +1,4 @@
-# hackbar
+# hackbar3
 A HackBar for google chrome/firefox browser. Small tool for pentesting websercurity.
 
 ## How to use
